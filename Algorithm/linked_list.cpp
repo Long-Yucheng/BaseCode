@@ -1,3 +1,6 @@
+//Author : Long Yucheng
+//Mail	 : frank.long.yucheng@gmail.com 
+
 #include <iostream>
 #include <stdlib.h>
 
