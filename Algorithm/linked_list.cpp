@@ -1,5 +1,8 @@
+//---------------------------------------------------
 //Author : Long Yucheng
-//Mail	 : frank.long.yucheng@gmail.com 
+//Mail	 : frank.long.yucheng@gmail.com
+//Note   : Free and Open Source. Just enjoy it.
+//---------------------------------------------------
 
 #include <iostream>
 #include <stdlib.h>
