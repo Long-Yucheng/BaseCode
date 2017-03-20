@@ -10,15 +10,16 @@ using namespace std;
 
 class Stack
 {
-    int top;
 public:
-    int a[MAX];
     Stack() {
         top = -1;
     }
     bool push(int x);
-    int pop();
+    int  pop();
     bool isEmpty();
+private:
+    int top;
+    int data[MAX];
 };
 
 bool Stack::push(int x)
@@ -27,7 +28,7 @@ bool Stack::push(int x)
         cout << "Stack Oerflow" << endl;
         return false;
     } else {
-        a[++top] = x;
+        data[++top] = x;
         return true;
     }
 }
@@ -38,7 +39,7 @@ int Stack::pop()
         cout << "Stack Underflow" << endl;
         return 0;
     } else {
-        int x = a[top--];
+        int x = data[top--];
         return x;
     }
 }
@@ -50,7 +51,7 @@ bool Stack::isEmpty()
 
 int main()
 {
-    struct Stack s;
+    Stack s;
     s.push(10);
     s.push(20);
     s.push(30);
