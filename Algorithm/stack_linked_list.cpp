@@ -28,6 +28,7 @@ public:
     int  pop();
     int  peek();
     bool isEmpty();
+    void makeEmpty();
 private:
     Stack(const Stack&);
     Stack& operator=(const Stack&);
@@ -89,6 +90,12 @@ bool Stack::isEmpty()
     }
 }
 
+void Stack::makeEmpty()
+{
+    while (head && tail) {
+        pop();
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -101,7 +108,13 @@ int main(int argc, char *argv[])
     cout << s.peek() << endl;
     s.pop();
     cout << s.peek() << endl;
-
+    s.push(19);
+    s.push(668);
+    s.push(28);
+    s.push(564);
+    cout << s.isEmpty() << endl;
+    s.makeEmpty();
+    cout << s.isEmpty() << endl;
     return 0;
 }
 
