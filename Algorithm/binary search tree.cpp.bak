@@ -38,24 +38,19 @@ BstNode* GetNewNode(int data) {
     return newNode;
 }
 
-bool Insert(BstNode** root, int data) {
-    if (*root == NULL) {
-        *root = GetNewNode(data);
-        return true;
+BstNode* Insert(BstNode* root, int data) {
+    if (root == NULL) {
+        root = GetNewNode(data);
+        return root;
     }
-
-    if (data == (*root)->data) {
-        return false;
-    }
-
-    if (data < (*root)->data) {
-        Insert(&(*root)->left, data);
+    else if (data <= root->data) {
+        root->left = Insert(root->left, data);
     }
     else {
-        Insert(&(*root)->right, data);
+        root->right = Insert(root->right, data);
     }
 
-    return true;
+    return root;
 }
 
 
@@ -66,36 +61,36 @@ bool Search(BstNode* root, int data) {
     else return Search(root->right, data);
 }
 
-bool Delete(BstNode** root, int data)
+BstNode* Delete(BstNode* root, int data)
 {
-    if (*root == NULL) return false;
-    if (data < (*root)->data) {
-        Delete(&(*root)->left, data);
-    } else if (data > (*root)->data) {
-        Delete(&(*root)->right, data);
+    if (root == NULL) return root;
+    if (data < root->data) {
+        root->left = Delete(root->left, data);
+    } else if (data > root->data) {
+        root->right = Delete(root->right, data);
     } else {
-        if ((*root)->left == NULL && (*root)->right == NULL) {
-            delete *root;
-            *root = NULL;
-            return true;
+        if (root->left == NULL && root->right == NULL) {
+            delete root;
+            root = NULL;
+            return root;
         }
-        else if ((*root)->left == NULL) {
-            BstNode* temp = *root;
-            *root = (*root)->right;
+        else if (root->left == NULL) {
+            BstNode* temp = root;
+            root = root->right;
             delete temp;
         }
-        else if ((*root)->right == NULL) {
-            BstNode* temp = *root;
-            *root = (*root)->left;
+        else if (root->right == NULL) {
+            BstNode* temp = root;
+            root = root->left;
             delete temp;
         }
         else {
-            BstNode* temp = FindMin((*root)->right);
-            (*root)->data = temp->data;
-            Delete(&(*root)->right, temp->data);
+            BstNode* temp = FindMin(root->right);
+            root->data = temp->data;
+            root->right = Delete(root->right, temp->data);
         }
     }
-    return true;
+    return root;
 }
 
 
@@ -134,16 +129,16 @@ int main(int argc, char* argv[])
 {
     BstNode* root;
     root = NULL;
-    Insert(&root, 15);
-    Insert(&root, 10);
-    Insert(&root, 20);
-    Insert(&root, 25);
-    Insert(&root, 8);
-    Insert(&root, 12);
+    root = Insert(root, 15);
+    root = Insert(root, 10);
+    root = Insert(root, 20);
+    root = Insert(root, 25);
+    root = Insert(root, 8);
+    root = Insert(root, 12);
 
     Inorder(root);
 
-    Delete(&root, 10);
+    Delete(root, 10);
     cout << "\n";
     Inorder(root);
 
